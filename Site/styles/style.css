@@ -166,7 +166,8 @@ body {
 
 /* LOGIN & CADASTRO */
 
-.login, .cadastro {
+.login,
+.cadastro {
   background-image: url('../assets/imgs/tela-para-quadro-140x70-leao-africano-entardecer-sol-africano.webp');
   background-size: cover;
   background-position: center;
@@ -182,7 +183,7 @@ body {
   border-radius: 10px;
   max-width: 500px;
   width: 90%;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
 }
 
@@ -256,29 +257,21 @@ body {
   font-size: 14px;
 }
 
-.quiz-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 50px 5%;
-      flex-wrap: wrap;
-      gap: 30px;
-      min-height: 80vh;
-    }
+img {
+  height: 110vh;
+}
 
-    .quiz {
-      flex: 1 1 55%;
-    }
+.simulador {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    .quiz-img {
-      flex: 1 1 35%;
-      display: flex;
-      justify-content: right;
-      align-items: center;
-    }
+}
 
-    .quiz-img img {
+
+
+/* .quiz-img img {
       max-width: 100%;
       height: auto;
       max-height: 700px;
-    }
+    } */
