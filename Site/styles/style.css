@@ -268,10 +268,66 @@ img {
 
 }
 
+/* Container principal */
+    .experiencia {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 15px;
+      font-family: 'Ubuntu', sans-serif;
+    }
 
+    /* Bloco de mídia que conterá 2 itens lado a lado */
+    .bloco-midias {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
 
-/* .quiz-img img {
-      max-width: 100%;
+    /* Cada item de mídia (imagem ou vídeo + texto) */
+    .midia {
+      flex: 1 1 48%; /* base 48%, para caber 2 por linha com espaço */
+      box-sizing: border-box;
+      text-align: justify;
+    }
+
+    /* Ajuste para imagens e vídeos ficarem responsivos e centralizados */
+    .midia img,
+    .midia video {
+      width: 100%;
       height: auto;
-      max-height: 700px;
-    } */
+      display: block;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    /* Texto descritivo */
+    .midia p {
+      margin-top: 8px;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    /* Título e intro */
+    .experiencia h2 {
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .experiencia p.intro {
+      margin-bottom: 30px;
+      text-align: center;
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    /* Responsividade: 1 coluna em telas menores */
+    @media (max-width: 700px) {
+      .bloco-midias {
+        flex-direction: column;
+      }
+      .midia {
+        flex: 1 1 100%;
+      }
+    }
