@@ -8,31 +8,36 @@ create database africa;
 
 use africa;
 
+drop database africa;
+
 create table usuarios (
     idusuario int primary key auto_increment,
     nome varchar(100) not null,
-    email varchar(100) unique not null,
-    cpf char(11) not null,
-    senha varchar(100) not null,
+    email varchar(45) unique not null,
+    senha varchar(45) not null,
     datacadastro timestamp default current_timestamp
 );
 
+CREATE TABLE pontuacao (
+    idpontuacao int auto_increment,
+    pontuacao int not null,
+    data_pontuacao timestamp default current_timestamp,
+    fkidusuario int not null,
+    fkidpergunta int not null,
+	constraint pkcomposta primary key (idpontuacao, fkidusuario, fkidpergunta),
+    constraint fkusuario foreign key (fkidusuario) references usuarios(idusuario),
+    constraint fkquiz foreign key (fkidpergunta) references quiz(idpergunta)
+);
+
 create table quiz (
-    idquiz int primary key auto_increment,
-    pergunta text not null,
-    opcao_a varchar(100) not null,
-    opcao_b varchar(100) not null,
-    opcao_c VARCHAR(100) not null,
+    idpergunta int primary key auto_increment,
+    pergunta text(200) not null,
+    opcao_a char(1) not null,
+    opcao_b char(1) not null,
+    opcao_c CHAR(1) not null,
     resposta_correta char(1) not null
 );
 
-CREATE TABLE respostas (
-    idresposta int primary key auto_increment,
-    fkusuario_id int not null,
-    fkquiz_id int not null,
-    resposta_usuario char(1) not null,
-    pontuacao int not null,
-    data_resposta timestamp default current_timestamp,
-    foreign key (fkusuario_id) references usuarios(idusuario),
-    foreign key (fkquiz_id) references quiz(idquiz)
-);
+select * from usuarios;
+select * from pontuacao;
+select * from quiz;
