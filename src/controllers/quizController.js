@@ -1,19 +1,21 @@
 var quizModel = require("../models/quizModel");
 
 function fazerQuiz(req, res) {
-    var quiz = req.body.pontosServer;
+    var acertos = req.body.acertosServer;
+    var erros = req.body.errosServer;
+    var porcentagem = req.body.percentualServer;
     var id = req.body.idServer;
     if (id == undefined) {
         res.status(400).send("Seu id está undefined!");
     }
     else {
-        quizModel.fazerQuiz(id, quiz) // chama o model select pra ver se o usuário já fez o quiz ou nao
+        quizModel.fazerQuiz(id, erros, acertos, porcentagem) 
             .then(
                 function (resultado) {
                     console.log(resultado);
                 }
             ).catch(
-                function (erro) { // reza pra nao dar erro
+                function (erro) { 
                     console.log(erro);
                     console.log(
                         "\nHouve um erro ao realizar o select! Erro: ",

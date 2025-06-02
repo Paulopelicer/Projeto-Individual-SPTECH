@@ -18,26 +18,16 @@ create table usuarios (
     datacadastro timestamp default current_timestamp
 );
 
-CREATE TABLE pontuacao (
-    idpontuacao int auto_increment,
-    pontuacao int not null,
-    data_pontuacao timestamp default current_timestamp,
-    fkidusuario int not null,
-    fkidpergunta int not null,
-	constraint pkcomposta primary key (idpontuacao, fkidusuario, fkidpergunta),
-    constraint fkusuario foreign key (fkidusuario) references usuarios(idusuario),
-    constraint fkquiz foreign key (fkidpergunta) references quiz(idpergunta)
-);
-
 create table quiz (
-    idpergunta int primary key auto_increment,
-    pergunta text(200) not null,
-    opcao_a char(1) not null,
-    opcao_b char(1) not null,
-    opcao_c CHAR(1) not null,
-    resposta_correta char(1) not null
+    idquiz int primary key auto_increment,
+    quantidade_acerto int not null,
+    quantidade_erro int not null,
+    porcentagem_acerto int not null,
+    data_quiz timestamp default current_timestamp,
+    fkidusuario int not null,
+    foreign key (fkidusuario) references usuarios(idusuario)
 );
 
 select * from usuarios;
-select * from pontuacao;
 select * from quiz;
+show tables;

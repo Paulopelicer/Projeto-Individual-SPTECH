@@ -115,6 +115,7 @@
       </div>
       <br>
       <button onclick="corrigir()">Ver Resultado</button>
+      <button onclick="dashboard()">Indicador de resultados</button>
       <button onclick="tentarNovamente()" id="btnTentarNovamente">Tentar novamente</button>
       <h4 id="mensagem"></h4>
     </div>
@@ -126,6 +127,10 @@
     function tentarNovamente() {
       window.location.reload()
     } //  função para atualizar a página do quiz e jogar novamente.
+
+    function dashboard() {
+      window.location = "dashboard.html"
+    } //  função para levar o usuário a página da dashboard.
 
   function corrigir() {
     
@@ -155,7 +160,10 @@
     }
 
     var id = sessionStorage.ID_USUARIO;
-    
+
+    var erros = 10 - pontos;
+    console.log(erros);
+    console.log(percentual);
     fetch("/teste/pontos", {
       method: "POST",
       headers: {
@@ -163,7 +171,9 @@
       },
       body: JSON.stringify({
         idServer: id,
-        pontosServer: percentual
+        percentualServer: percentual,
+        errosServer: erros,
+        acertosServer: pontos
       }),
     })
    

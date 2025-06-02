@@ -25,7 +25,7 @@
         <li>
           <a href="minhaexperiencia.html">Minha Experiência </a>
         </li>
-        <!-- <li>
+        <!-- <li>t
           <a href="quiz.html">Quiz</a>
         </li> -->
         <li>
@@ -88,6 +88,16 @@
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
+    var listaCaractereEspecial = ['@', '#', '%', '&', '*']
+    var verificacaoCaractere = false;
+
+    for (var i = 0; i < listaCaractereEspecial.length; i++) {
+      if (senhaVar.includes(listaCaractereEspecial[i])) {
+        verificacaoCaractere = true
+        break
+      }
+
+    }
 
     // Verificando se há algum campo em branco
     if (
@@ -103,6 +113,11 @@
     if (senhaVar != confirmacaoSenhaVar) {
     alert ("Senhas não coincidem");
     return false;
+    }
+
+    if (verificacaoCaractere == false) {
+      alert ("A senha deve conter os caracteres especiais '@', '#', '%', '&', '*'");
+      return false;
     }
 
     if (!emailVar.includes('@') || !emailVar.includes('.com')) {
