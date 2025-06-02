@@ -96,9 +96,22 @@
       senhaVar == "" ||
       confirmacaoSenhaVar == ""
       ) {
-      
-      return false;
-    } 
+    alert ("Por favor preencha todos campos.");
+    return false;
+    }
+
+    if (senhaVar != confirmacaoSenhaVar) {
+    alert ("Senhas não coincidem");
+    return false;
+    }
+
+    if (!emailVar.includes('@') || !emailVar.includes('.com')) {
+    alert ("E-mail deve conter '@' e '.com'.");
+    return false;
+  } else {
+    alert ("Cadastro realizado com sucesso! Redirecionando para o login.");
+    
+  }
 
         // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
@@ -140,7 +153,7 @@
         
       });
 
-    return false;
+    return true;
   }
 
   
