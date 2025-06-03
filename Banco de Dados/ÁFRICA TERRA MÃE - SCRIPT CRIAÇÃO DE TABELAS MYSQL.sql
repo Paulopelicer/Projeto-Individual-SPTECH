@@ -31,3 +31,9 @@ create table quiz (
 select * from usuarios;
 select * from quiz;
 show tables;
+
+
+
+
+
+

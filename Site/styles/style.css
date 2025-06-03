@@ -103,7 +103,7 @@ body {
   margin-top: 20px;
 }
 
-/* SEÇÃO SOCIAL (TEXTO ABAIXO DO VÍDEO) */
+
 
 .social {
   background-color: var(--areia);
@@ -268,7 +268,7 @@ img {
 
 }
 
-/* Container principal */
+
     .experiencia {
       max-width: 1000px;
       margin: 40px auto;
@@ -276,7 +276,7 @@ img {
       font-family: 'Ubuntu', sans-serif;
     }
 
-    /* Bloco de mídia que conterá 2 itens lado a lado */
+    
     .bloco-midias {
       display: flex;
       justify-content: space-between;
@@ -285,14 +285,14 @@ img {
       flex-wrap: wrap;
     }
 
-    /* Cada item de mídia (imagem ou vídeo + texto) */
+    
     .midia {
-      flex: 1 1 48%; /* base 48%, para caber 2 por linha com espaço */
+      flex: 1 1 48%;
       box-sizing: border-box;
       text-align: justify;
     }
 
-    /* Ajuste para imagens e vídeos ficarem responsivos e centralizados */
+    
     .midia img,
     .midia video {
       width: 100%;
@@ -302,14 +302,14 @@ img {
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
 
-    /* Texto descritivo */
+   
     .midia p {
       margin-top: 8px;
       font-size: 0.95rem;
       line-height: 1.4;
     }
 
-    /* Título e intro */
+    
     .experiencia h2 {
       margin-bottom: 10px;
       text-align: center;
@@ -322,7 +322,7 @@ img {
       color: #333;
     }
 
-    /* Responsividade: 1 coluna em telas menores */
+    
     @media (max-width: 700px) {
       .bloco-midias {
         flex-direction: column;
@@ -332,7 +332,7 @@ img {
       }
     }
 
-    /* dash */
+    
 
     .container-dashboard {
   padding: 2rem;
