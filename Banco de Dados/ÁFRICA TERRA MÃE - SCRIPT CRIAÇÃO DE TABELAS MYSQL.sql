@@ -32,6 +32,18 @@ select * from usuarios;
 select * from quiz;
 show tables;
 
+select idquiz as 'Identificador do Quiz',
+quantidade_acerto as 'Quantidade de acertos',
+quantidade_erro as 'Quantidade de erros',
+porcentagem_acerto as 'Percentual de acertos',
+data_quiz as 'Data do quiz'
+from quiz where fkidusuario = 1
+order by data_quiz ASC;
+
+select count(*) as 'Tentativas' from quiz where fkidusuario = 1;
+
+
+
 
 
 
