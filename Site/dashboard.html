@@ -28,7 +28,7 @@
 
 <!-- <body onload=" atualizarFeed()"> -->
 
-<body onload="plotarGrafico()">
+<body onload="obterDadosGrafico(); buscarKpi1(); buscarKpi2()">
 
     <div class="janela">
         <div class="header-left">
@@ -55,8 +55,8 @@
 
         <div class="dash">
             <div id="kpis">
-                <div id="kpi1"></div>
-                <div id="kpi2"></div>
+                <div style="color: black" id="kpi1"></div>
+                <div id="kpi2" style="color: black;"></div>
             </div>
             <div id="graficos">
                 <div id="grafico">
@@ -77,56 +77,125 @@
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
 
-    // function obterDadosGrafico(idAquario) {
+    function obterDadosGrafico() {
 
-    //     alterarTitulo(idAquario)
+        //  var idusuario = sessionStorage.ID_USUARIO
 
-    //     if (proximaAtualizacao != undefined) {
-    //         clearTimeout(proximaAtualizacao);
-    //     }
+        fetch(`/medidas/ultimas`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    // resposta.reverse();
 
-    //     fetch(`/medidas/ultimas/${idAquario}`, { cache: 'no-store' }).then(function (response) {
-    //         if (response.ok) {
-    //             response.json().then(function (resposta) {
-    //                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-    //                 resposta.reverse();
+                    plotarGrafico(resposta);
 
-    //                 plotarGrafico(resposta, idAquario);
-
-    //             });
-    //         } else {
-    //             console.error('Nenhum dado encontrado ou erro na API');
-    //         }
-    //     })
-    //         .catch(function (error) {
-    //             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-    //         });
-    // }
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
 
     // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
     // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
     // A função *plotarGrafico* também invoca a função *atualizarGrafico*
-    function plotarGrafico() {
+    function plotarGrafico(resposta) {
+
         console.log('iniciando plotagem do gráfico...');
 
         // Criando estrutura para plotar gráfico - labels
-        let nomes = ['Nome 1', 'Nome 2', 'Nome 3'];
-        let quantidade = [10, 20, 30]
+        let labels = [];
 
         // Criando estrutura para plotar gráfico - dados
-        let graficoBarra = new Chart(document.getElementById('graficoBarra').getContext('2d'), {
-            type: 'bar',
-            data: {
-                labels: nomes,
-                datasets: [{
-                    data: quantidade,
-                    label: 'Umidade',
-                    borderColor: 'rgb(75, 192, 192)',
-                    backgroundColor: 'blue'
-                }]
-            }
+        let dados = {
+            labels: labels,
+            datasets: [{
+                label: 'Porcentagem de acerto',
+                data: [],
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1,
+                backgroundColor: "#C9A441"
+            },
+            ]
+        };
 
-        });
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+        console.log(resposta)
+
+        // Inserindo valores recebidos em estrutura para plotar o gráfico
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            labels.push(registro.nome);
+            dados.datasets[0].data.push(registro.porcentagem_acerto);
+
+        }
+
+        console.log('----------------------------------------------')
+        console.log('O gráfico será plotado com os respectivos valores:')
+        console.log('Labels:')
+        console.log(labels)
+        console.log('Dados:')
+        console.log(dados.datasets)
+        console.log('----------------------------------------------')
+
+        // Criando estrutura para plotar gráfico - config
+        const config = {
+            type: 'bar',
+            data: dados,
+        };
+
+        // Adicionando gráfico criado em div na tela
+        let myChart = new Chart(
+            document.getElementById(`graficoBarra`),
+            config
+        );
+
+
+    }
+
+    function buscarKpi1() {
+
+        var idusuario = sessionStorage.ID_USUARIO
+        
+        fetch(`/medidas/bdafrica/${idusuario}`).then(
+            (response) => {
+                if (response.ok) {
+                    console.log()
+                    response.json().then((resposta) => {
+                        JSON.stringify(resposta)
+                        var kpi1 = document.getElementById("kpi1") 
+                        kpi1.innerHTML = `Quantidade de Tentativas ${resposta[0].total}`
+                    })
+                    
+                }
+            }
+        )
+
+    }
+
+    function buscarKpi2() {
+
+        var idusuario = sessionStorage.ID_USUARIO
+        
+        fetch(`/medidas/pontuacao/${idusuario}`).then(
+            (response) => {
+                console.log('estou na dash')
+                if (response.ok) {
+                    console.log()
+                    response.json().then((resposta) => {
+                        JSON.stringify(resposta)
+                        var kpi2 = document.getElementById("kpi2") 
+                        kpi2.innerHTML = `Quantidade de Acertos ${resposta[0].quantidadedeAcertos}`
+                    })
+                    
+                }
+            }
+        )
 
     }
 
