@@ -3,11 +3,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@100..900&display=swap');
 
 :root {
-  --color-background: #3e2723;    
+  --color-background: #7A4E2D;    
   --color-primary: #bf360c;       
   --color-secondary: #bf360c;     
   --color-accent: #C9A441;        
-  --color-dark: #212121;          
+  --color-dark: #3e2723;          
   --color-light: #f5f5dc;         
   --font-base: 'Barlow', sans-serif;
 }
@@ -48,7 +48,7 @@ body {
   color: var(--color-light);
 }
 
-.btn-nav, .btn-nav-white, .btn-logout {
+.btn-nav, .btn-nav1, .btn-nav-white, .btn-logout {
   font-family: var(--font-base);
   font-weight: 600;
   border-radius: 5px;
@@ -62,18 +62,43 @@ body {
   background-color: var(--color-primary);
   color: var(--color-light);
   width: 40%;
+  height: 7%;
+   display: flex;
+  align-items: center;
+  align-self: center;
+}
+
+.header-left .btn-nav h3 {
+ margin-left: 15px;
+ text-align: center;
+}
+
+.btn-nav1 {
+  background-color: var(--color-primary);
+  color: var(--color-light);
+  width: 40%;
+  height: 7%;
+   display: flex;
+  align-items: center;
+  align-self: center;
+}
+
+.header-left .btn-nav1 h3 {
+ margin-left: 35px;
+ text-align: center;
 }
 
 .btn-nav-white {
   background-color: var(--color-light);
   border: 3px solid var(--color-primary);
   width: 40%;
+  
 }
 
 .btn-nav-white h3 {
   color: var(--color-primary);
-  margin: 0;
-  padding: 0;
+  text-align: center;
+
 }
 
 .btn-logout {
@@ -81,7 +106,6 @@ body {
   color: var(--color-light);
   border-radius: 10px;
   width: 20%;
-  margin-bottom: 100px;
 }
 
 .hello {
@@ -267,20 +291,6 @@ body {
 }
 
 /* Indicadores de alerta */
-
-.perigo-frio { background-color: #1976d2; }
-.perigo-quente { background-color: #d84315; }
-.alerta-frio { background-color: #4fc3f7; }
-.alerta-quente { background-color: #fff176; }
-.ideal { background-color: #81c784; }
-
-.area-parametros-alerta {
-  background-color: var(--color-dark);
-  width: 70%;
-  margin: 10px auto 0 auto;
-  display: flex;
-  flex-direction: column;
-}
 
 .titulo-legenda {
   color: var(--color-light);

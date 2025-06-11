@@ -40,13 +40,13 @@ data_quiz as 'Data do quiz'
 from quiz where fkidusuario = 1
 order by data_quiz ASC;
 
-select nome, porcentagem_acerto from quiz join usuarios on fkidusuario = 1 order by porcentagem_acerto desc limit 3;
+select nome, porcentagem_acerto from quiz join usuarios on fkidusuario = 1 order by porcentagem_acerto desc limit 5;
 
 select max(quantidade_acerto) from quiz where fkidusuario = 6;
 
 select count(idquiz) from quiz where fkidusuario = 1;
 
-select count(fkidusuario) from quiz join usuarios on idusuario = fkidusuario where nome = sessionStorage.NOME_USUARIO;
+select count(fkidusuario) from quiz join usuarios on idusuario = fkidusuario where nome = 'Paulo';
 
 select nome, count(fkidusuario) as QuantidadeTotal from usuarios join quiz on fkidusuario = 1;
 

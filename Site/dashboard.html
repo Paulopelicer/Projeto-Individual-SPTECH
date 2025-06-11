@@ -47,7 +47,7 @@
             </div>
 
 
-            <div class="btn-logout" onclick="limparSessao()">
+            <div class="btn-nav1" onclick="limparSessao()">
                 <h3>Sair</h3>
             </div>
 
@@ -169,7 +169,7 @@
                     response.json().then((resposta) => {
                         JSON.stringify(resposta)
                         var kpi1 = document.getElementById("kpi1") 
-                        kpi1.innerHTML = `Quantidade de Tentativas ${resposta[0].total}`
+                        kpi1.innerHTML = `<h4>Quantidade de Tentativas <br> ${resposta[0].total}</h4>`
                     })
                     
                 }
@@ -190,7 +190,7 @@
                     response.json().then((resposta) => {
                         JSON.stringify(resposta)
                         var kpi2 = document.getElementById("kpi2") 
-                        kpi2.innerHTML = `Quantidade de Acertos ${resposta[0].quantidadedeAcertos}`
+                        kpi2.innerHTML = `<h4>Maior Pontuação <br> ${resposta[0].quantidadedeAcertos}</h4>`
                     })
                     
                 }
